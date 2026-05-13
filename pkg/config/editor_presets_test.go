@@ -108,6 +108,15 @@ func TestGetEditTemplate(t *testing.T) {
 			"emacs +{{line}} -- {{filename}}",
 			true,
 		},
+		{
+			"Unknown guessed editor from $EDITOR generates generic preset",
+			&OSConfig{},
+			func() string { return "emacsclient" },
+			"emacsclient -- {{filename}}",
+			"emacsclient +{{line}} -- {{filename}}",
+			"emacsclient +{{line}} -- {{filename}}",
+			true,
+		},
 	}
 	for _, s := range scenarios {
 		t.Run(s.name, func(t *testing.T) {

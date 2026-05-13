@@ -170,6 +170,8 @@ func getPreset(shell string, osConfig *OSConfig, guessDefaultEditor func() strin
 			presetName = defaultEditor
 		} else if p := editorToPreset[defaultEditor]; p != "" {
 			presetName = p
+		} else if defaultEditor != "" {
+			return standardTerminalEditorPreset(defaultEditor)
 		}
 	}
 
